@@ -1,6 +1,7 @@
 User-agent: *
-Disallow:
+Allow: /
 Sitemap: https://www.calcly.in/sitemap.xml
+
 <url>
   <loc>https://www.calcly.in/privacy-policy.html</loc>
   <lastmod>2025-09-24</lastmod>
