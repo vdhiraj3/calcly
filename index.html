@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Calcly — Advanced Scientific Calculator</title>
+  <meta name="description" content="Calcly: Free advanced scientific calculator. Supports trig (DEG/RAD), logs, powers, roots, factorial, history, download and copy results. Mobile-friendly and fast." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://www.calcly.example/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Calcly — Advanced Scientific Calculator" />
+  <meta property="og:description" content="Use Calcly's free advanced scientific calculator — trig, logs, powers, roots, factorial and expression history. Mobile-friendly." />
+  <meta property="og:url" content="https://www.calcly.example/" />
+  <meta property="og:image" content="favicon.svg" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+
+  <!-- JSON-LD structured data -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"Calcly",
+    "url":"https://www.calcly.example/",
+    "description":"Free advanced scientific calculator for math, engineering and learning. Supports DEG/RAD, trig, logs, powers, roots and factorial.",
+    "applicationCategory":"Utilities",
+    "operatingSystem":"All",
+    "browserRequirements":"JavaScript enabled"
+  }
+  </script>
+
+  <!-- Place your AdSense script here (replace ca-pub-XXXXXXXXXXXX) if you have an account.
+       For approval, do not show ads until you have 20+ quality pages and essential policy pages (Privacy Policy).
+       <script data-ad-client="ca-pub-XXXXXXXXXXXX" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  -->
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="/">
+        <svg class="logo" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#007BFF"/></svg>
+        <div class="brand-text"><strong>Calcly</strong><span class="muted">Scientific Calculator</span></div>
+      </a>
+
+      <div class="controls">
+        <div class="angle-toggle" role="tablist" aria-label="Angle mode">
+          <button id="btn-deg" class="mode active">DEG</button>
+          <button id="btn-rad" class="mode">RAD</button>
+        </div>
+        <button id="open-popup" class="small hidden">Open</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container main-grid" id="main">
+    <!-- Left: history -->
+    <section class="panel" aria-labelledby="history-heading">
+      <h2 id="history-heading">Expression History</h2>
+      <div class="history" id="history">
+        <div class="empty" id="emptyState">No calculations yet. Start by entering an expression.</div>
+        <ul id="historyList"></ul>
+      </div>
+      <div class="history-actions">
+        <button id="clear-history" class="btn small">Clear</button>
+        <button id="download-history" class="btn small">Download CSV</button>
+      </div>
+    </section>
+
+    <!-- Right: calculator -->
+    <aside class="panel calc-panel" aria-labelledby="calculator-heading">
+      <h2 id="calculator-heading">Calculator</h2>
+      <div class="display-card">
+        <div id="expression" class="expression" contenteditable="true" spellcheck="false" aria-label="Expression"></div>
+        <div id="result" class="result" aria-live="polite">0</div>
+      </div>
+
+      <div class="keys" id="keys" role="grid" aria-label="Calculator keys">
+        <!-- row 1 -->
+        <button class="key func" data-action="2nd">2nd</button>
+        <button class="key func" data-action="pi">π</button>
+        <button class="key func" data-action="e">e</button>
+        <button class="key func" data-action="C">C</button>
+
+        <!-- row 2 -->
+        <button class="key func" data-action="x2">x²</button>
+        <button class="key func" data-action="xy">xʸ</button>
+        <button class="key func" data-action="sqrt">√x</button>
+        <button class="key op" data-action="=">=</button>
+
+        <!-- row 3 -->
+        <button class="key func" data-action="ln">ln</button>
+        <button class="key func" data-action="log">log</button>
+        <button class="key func" data-action="exp">exp</button>
+        <button class="key func" data-action="10x">10ˣ</button>
+
+        <!-- row 4 -->
+        <button class="key func" data-action="sin">sin</button>
+        <button class="key func" data-action="cos">cos</button>
+        <button class="key func" data-action="tan">tan</button>
+        <button class="key func" data-action="ans">Ans</button>
+
+        <!-- row 5 -->
+        <button class="key func" data-action="(">(</button>
+        <button class="key func" data-action=")">)</button>
+        <button class="key func" data-action="%">%</button>
+        <button class="key op" data-action="÷">÷</button>
+
+        <!-- digits -->
+        <button class="key num" data-action="7">7</button>
+        <button class="key num" data-action="8">8</button>
+        <button class="key num" data-action="9">9</button>
+        <button class="key op" data-action="×">×</button>
+
+        <button class="key num" data-action="4">4</button>
+        <button class="key num" data-action="5">5</button>
+        <button class="key num" data-action="6">6</button>
+        <button class="key op" data-action="-">−</button>
+
+        <button class="key num" data-action="1">1</button>
+        <button class="key num" data-action="2">2</button>
+        <button class="key num" data-action="3">3</button>
+        <button class="key op" data-action="+">+</button>
+
+        <button class="key num wide" data-action="0">0</button>
+        <button class="key num" data-action=".">.</button>
+        <button class="key eq" data-action="=">=</button>
+      </div>
+
+      <div class="footer-actions" style="margin-top:12px;display:flex;justify-content:space-between;align-items:center;">
+        <div class="muted">Tip: Type in the expression box and press Enter</div>
+        <div><button id="copy-result" class="btn small">Copy Result</button></div>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="container footer">
+  <div>© <span id="year"></span> Calcly — Free Scientific Calculator</div>
+  <div class="muted">
+    <a href="/privacy-policy.html">Privacy Policy</a> ·
+    <a href="/terms.html">Terms & Conditions</a>
+  </div>
+</footer>
+
+
+ <script src="script.js" defer></script>
+</body>
+</html>
