@@ -1,13 +1,13 @@
 User-agent: *
 Disallow:
-Sitemap: https://www.calcly.example/sitemap.xml
+Sitemap: https://www.calcly.in/sitemap.xml
 <url>
-  <loc>https://www.calcly.com/privacy-policy.html</loc>
+  <loc>https://www.calcly.in/privacy-policy.html</loc>
   <lastmod>2025-09-24</lastmod>
   <priority>0.5</priority>
 </url>
 <url>
-  <loc>https://www.calcly.com/terms.html</loc>
+  <loc>https://www.calcly.in/terms.html</loc>
   <lastmod>2025-09-24</lastmod>
   <priority>0.5</priority>
 </url>
