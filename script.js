@@ -203,3 +203,12 @@ document.addEventListener('DOMContentLoaded', function(){
   renderHistory();
   if(yearEl) yearEl.textContent = new Date().getFullYear();
 });
+
+
+// Load header and footer
+$(function () {
+  $("header").load("header.html");
+  $("footer").load("footer.html", function () {
+    document.getElementById("year").textContent = new Date().getFullYear();
+  });
+});
