@@ -5,24 +5,29 @@ document.addEventListener('DOMContentLoaded', function(){
   const keys = document.getElementById('keys');
   const historyList = document.getElementById('historyList');
   const emptyState = document.getElementById('emptyState');
-  const btnDeg = document.getElementById('btn-deg');
-  const btnRad = document.getElementById('btn-rad');
   const clearHistoryBtn = document.getElementById('clear-history');
   const downloadHistoryBtn = document.getElementById('download-history');
   const copyResultBtn = document.getElementById('copy-result');
   const yearEl = document.getElementById('year');
 
+  // DEG/RAD buttons (if exist)
+  const btnDeg = document.getElementById('btn-deg');
+  const btnRad = document.getElementById('btn-rad');
   let angleMode = 'DEG';
+
+  if(btnDeg && btnRad){
+    function setAngleMode(mode){
+      angleMode = mode;
+      btnDeg.classList.toggle('active', mode === 'DEG');
+      btnRad.classList.toggle('active', mode === 'RAD');
+    }
+    btnDeg.addEventListener('click', ()=> setAngleMode('DEG'));
+    btnRad.addEventListener('click', ()=> setAngleMode('RAD'));
+    setAngleMode('DEG');
+  }
+
   let lastAnswer = null;
   let history = [];
-
-  function setAngleMode(mode){
-    angleMode = mode;
-    btnDeg.classList.toggle('active', mode === 'DEG');
-    btnRad.classList.toggle('active', mode === 'RAD');
-  }
-  btnDeg.addEventListener('click', ()=> setAngleMode('DEG'));
-  btnRad.addEventListener('click', ()=> setAngleMode('RAD'));
 
   function placeCaretAtEnd(el) {
     el.focus();
@@ -68,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function(){
     if(history.length === 0) return alert('No history to download.');
     let csv = 'Expression,Result,Time\n';
     history.forEach(h => {
-      csv += '"'+h.expr.replace(/"/g,'""')+'","'+h.res+'","'+h.time+'"\n';
+      csv += `"${h.expr.replace(/"/g,'""')}","${h.res}","${h.time}"\n`;
     });
     const blob = new Blob([csv], {type: 'text/csv;charset=utf-8;'});
     const url = URL.createObjectURL(blob);
@@ -88,7 +93,6 @@ document.addEventListener('DOMContentLoaded', function(){
     if(!action) return;
     switch(action){
       case 'C': expEl.textContent=''; resEl.textContent='0'; placeCaretAtEnd(expEl); break;
-      case '⌫': expEl.textContent = expEl.textContent.slice(0,-1); placeCaretAtEnd(expEl); break;
       case '=': evaluateExpression(); break;
       case 'pi': insertAtCursor('π'); break;
       case 'e': insertAtCursor('e'); break;
@@ -101,7 +105,6 @@ document.addEventListener('DOMContentLoaded', function(){
       case 'exp': insertAtCursor('exp('); break;
       case '10x': insertAtCursor('10^('); break;
       case 'sin': case 'cos': case 'tan': insertAtCursor(action+'('); break;
-      case '(' : case ')' : case '%' : case '÷' : case '×' : case '-' : case '+' : case '.' : insertAtCursor(action); break;
       default: insertAtCursor(action);
     }
     placeCaretAtEnd(expEl);
@@ -152,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function(){
     expr = expr.replace(/(pi|e|\))(\d|\(|pi|e)/g, '$1*$2');
     expr = expr.replace(/\^/g, '**');
     if(lastAnswer !== null) expr = expr.replace(/\bAns\b/ig, `(${Number(lastAnswer)})`);
-    if(!/^[0-9A-Za-z_().+\-*/%^, \\t]*$/.test(expr)) throw new Error('Invalid characters');
+    if(!/^[0-9A-Za-z_().+\-*/%^, \t]*$/.test(expr)) throw new Error('Invalid characters');
     const code = `
       "use strict";
       const DEG = ${angleMode === 'DEG' ? 'true' : 'false'};
@@ -192,28 +195,11 @@ document.addEventListener('DOMContentLoaded', function(){
     navigator.clipboard.writeText(text).then(()=> alert('Result copied to clipboard'), ()=> alert('Copy failed'));
   });
 
-  // keyboard handling
-  window.addEventListener('keydown', (ev)=>{
-    if(ev.key === 'Enter'){ ev.preventDefault(); evaluateExpression(); return; }
-    if(ev.key === 'Backspace'){ return; }
-  });
-
   // sanitize input on edit
   expEl.addEventListener('input', ()=> {
     expEl.textContent = expEl.textContent.replace(/\u2212/g,'-');
   });
 
-  // initial setup
-  setAngleMode('DEG');
   renderHistory();
-  yearEl.textContent = new Date().getFullYear();
-});
-
-
-// Load header and footer
-$(function () {
-  $("header").load("header.html");
-  $("footer").load("footer.html", function () {
-    document.getElementById("year").textContent = new Date().getFullYear();
-  });
+  if(yearEl) yearEl.textContent = new Date().getFullYear();
 });
