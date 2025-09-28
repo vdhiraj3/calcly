@@ -208,3 +208,8 @@ document.addEventListener('DOMContentLoaded', function(){
   renderHistory();
   yearEl.textContent = new Date().getFullYear();
 });
+
+
+$(function () {
+  $("header").load("header.html");
+});
