@@ -45,3 +45,147 @@ body{margin:0;min-height:100vh;background:#fbfcff;color:#111827;padding:18px;fon
 .small{font-size:13px}
 .footer{display:flex;justify-content:space-between;align-items:center;margin-top:16px;color:#64748b;font-size:14px}
 .muted{color:#64748b;font-size:13px}
+
+
+/* Header Container Layout */
+.site-header {
+  background-color: #fff;
+  padding: 12px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1152px;
+  margin: 0 auto;
+  padding: 0 16px;
+  flex-wrap: wrap;
+}
+
+/* LEFT: Hamburger Menu */
+.header-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.menu-icon {
+  font-size: 24px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 1000;
+  min-width: 180px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-menu a {
+  display: block;
+  margin-bottom: 6px;
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+}
+
+.dropdown-menu a:last-child {
+  margin-bottom: 0;
+}
+
+/* CENTER: Logo */
+.header-center {
+  flex: 1;
+  text-align: center;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: #000;
+}
+
+.brand img {
+  margin-right: 8px;
+}
+
+.brand-text {
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.muted {
+  color: #666;
+  font-size: 12px;
+}
+
+/* RIGHT: Controls */
+.header-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+
+.angle-toggle button {
+  padding: 4px 10px;
+  font-size: 12px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.angle-toggle .active {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+.small {
+  font-size: 12px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .header-left, .header-center, .header-right {
+    flex: 1 1 100%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .header-left {
+    text-align: left;
+  }
+
+  .header-right {
+    text-align: right;
+  }
+
+  .dropdown-menu {
+    left: 16px;
+    top: 45px;
+  }
+}
