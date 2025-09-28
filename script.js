@@ -1,8 +1,3 @@
-$(function() {
-  $("header").load("./_include/header.html");
-});
-
-
 // Calcly script.js - Advanced Scientific Calculator
 document.addEventListener('DOMContentLoaded', function(){
   const expEl = document.getElementById('expression');
