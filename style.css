@@ -209,7 +209,7 @@ body{margin:0;min-height:100vh;background:#fbfcff;color:#111827;padding:18px;fon
     top: 45px;
   }
   .main-wrapper {
-      display: block;
+      display: block !important;
   }
 }
 
