@@ -212,4 +212,5 @@ document.addEventListener('DOMContentLoaded', function(){
 
 $(function () {
   $("header").load("header.html");
+  $("footer").load("footer.html");
 });
