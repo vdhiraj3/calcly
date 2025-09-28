@@ -217,9 +217,3 @@ $(function () {
     document.getElementById("year").textContent = new Date().getFullYear();
   });
 });
-
-// ✅ Global toggleMenu function (accessible by inline onclick)
-function toggleMenu() {
-  var menu = document.getElementById("dropdownMenu");
-  menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
-}
