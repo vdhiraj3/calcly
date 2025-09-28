@@ -210,7 +210,16 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 
 
+// Load header and footer
 $(function () {
   $("header").load("header.html");
-  $("footer").load("footer.html");
+  $("footer").load("footer.html", function () {
+    document.getElementById("year").textContent = new Date().getFullYear();
+  });
 });
+
+// ✅ Global toggleMenu function (accessible by inline onclick)
+function toggleMenu() {
+  var menu = document.getElementById("dropdownMenu");
+  menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+}
