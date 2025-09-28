@@ -1,0 +1,33 @@
+<body style="margin:0; font-family: Arial, sans-serif; background-color:#f9f9f9;">
+
+  <!-- Header -->
+  <header style="background-color:#007BFF; color:white; padding:15px 20px; display:flex; justify-content:space-between; align-items:center;">
+    <div style="font-size:24px; font-weight:bold;">Calcly</div>
+    <nav>
+      <a href="index.html" style="color:white; text-decoration:none; margin-right:15px;">Home</a>
+      <a href="contact.html" style="color:white; text-decoration:none;">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Contact Form -->
+  <div style="max-width:500px; margin:50px auto; padding:20px; border:1px solid #ccc; border-radius:8px; background-color:white; box-shadow:0 4px 8px rgba(0,0,0,0.1);">
+    <h2 style="text-align:center; color:#333;">Contact Us</h2>
+
+    <!-- Replace YOUR_ENDPOINT_URL with Formspree endpoint -->
+    <form action="https://formspree.io/f/mldpgvpw" method="POST" style="display:flex; flex-direction:column; gap:15px;">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" placeholder="Your Name" required style="padding:10px; border-radius:5px; border:1px solid #aaa;">
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Your Email" required style="padding:10px; border-radius:5px; border:1px solid #aaa;">
+
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" rows="5" placeholder="Your Message" required style="padding:10px; border-radius:5px; border:1px solid #aaa;"></textarea>
+
+      <button type="submit" style="padding:12px; border:none; border-radius:5px; background-color:#007BFF; color:white; font-size:16px; cursor:pointer; transition:0.3s;">
+        Send Message
+      </button>
+    </form>
+  </div>
+
+</body>
