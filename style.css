@@ -73,7 +73,7 @@ body{margin:0;min-height:100vh;background:#fbfcff;color:#111827;padding:18px;fon
 }
 
 .menu-icon {
-  font-size: 24px;
+  font-size: 30px;
   cursor: pointer;
   user-select: none;
 }
@@ -97,7 +97,7 @@ body{margin:0;min-height:100vh;background:#fbfcff;color:#111827;padding:18px;fon
   margin-bottom: 6px;
   text-decoration: none;
   color: #333;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .dropdown-menu a:last-child {
@@ -186,7 +186,6 @@ body{margin:0;min-height:100vh;background:#fbfcff;color:#111827;padding:18px;fon
   }
 
   .dropdown-menu {
-    left: 16px;
     top: 45px;
   }
 }
