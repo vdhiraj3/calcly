@@ -44,22 +44,110 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container">
-      <a class="brand" href="https://www.calcly.in/">
-        <svg class="logo" viewBox="0 0 24 24" width="28" height="28" aria ="true"><rect width="24" height="24" rx="6" fill="#007BFF" text="CLY"/></svg>
-        <div class="brand-text"><strong>Calcly</strong><span class="muted">Scientific Calculator</span></div>
-      </a>
+ <header class="site-header">
+  <div class="container">
 
-      <div class="controls">
-        <div class="angle-toggle" role="tablist" aria-label="Angle mode">
-          <button id="btn-deg" class="mode active">DEG</button>
-          <button id="btn-rad" class="mode">RAD</button>
-        </div>
-        <button id="open-popup" class="small hidden">Open</button>
+    <!-- Left: Hamburger Menu -->
+    <div class="menu-container">
+      <div class="menu-icon" onclick="toggleMenu()">☰</div>
+      <div class="dropdown-menu" id="dropdownMenu">
+        <a href="index.html">Basic Calculator</a>
+        <a href="scientific.html">Scientific Calculator</a>
+        <a href="bmi.html">BMI Calculator</a>
+        <a href="age.html">Age Calculator</a>
+        <a href="emi.html">EMI Calculator</a>
       </div>
     </div>
-  </header>
+
+    <!-- Center: Logo + Brand -->
+    <a class="brand" href="/" style="display: flex; align-items: center; text-align: center;">
+      <img src="favicon.svg" alt="Calcly Logo" width="32" height="32" style="margin-right:8px;">
+      <div class="brand-text">
+        <strong>Calcly</strong><br>
+        <span class="muted">Scientific Calculator</span>
+      </div>
+    </a>
+
+    <!-- Right: Controls -->
+    <div class="controls">
+      <div class="angle-toggle" role="tablist" aria-label="Angle mode">
+        <button id="btn-deg" class="mode active">DEG</button>
+        <button id="btn-rad" class="mode">RAD</button>
+      </div>
+      <button id="open-popup" class="small hidden">Open</button>
+    </div>
+
+  </div>
+</header>
+
+<!-- CSS -->
+<style>
+.site-header {
+  background: #f8f9fa;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ddd;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.menu-container {
+  position: relative;
+}
+.menu-icon {
+  font-size: 22px;
+  cursor: pointer;
+  background: #0078d7;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 5px;
+}
+.dropdown-menu {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  min-width: 180px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+.dropdown-menu a {
+  padding: 10px;
+  text-decoration: none;
+  color: #333;
+}
+.dropdown-menu a:hover {
+  background: #f0f0f0;
+}
+.brand {
+  text-decoration: none;
+  color: #0078d7;
+  font-size: 18px;
+}
+.brand-text {
+  display: inline-block;
+  line-height: 1.2;
+}
+.controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+</style>
+
+<!-- Script -->
+<script>
+function toggleMenu() {
+  var menu = document.getElementById("dropdownMenu");
+  menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+}
+</script>
+
 
   <main class="container main-grid" id="main">
     <!-- Left: history -->
