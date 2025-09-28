@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EMI Calculator | Calcly</title>
+
+  <!-- SEO Tags -->
+  <meta name="description" content="Free EMI Calculator - Calculate loan EMI for home, car, personal, or education loan easily. Accurate and fast results." />
+  <meta name="keywords" content="EMI calculator, loan EMI calculator, car loan, home loan, personal loan calculator" />
+  <meta name="author" content="Calcly" />
+
+  <!-- Styles -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f8ff;
+      color: #222;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #0077b6;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+    }
+    .main-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 20px;
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 0 15px;
+    }
+    .container {
+      flex: 2;
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    .ads-section {
+      flex: 1;
+      background: #fff;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      min-width: 250px;
+      text-align: center;
+    }
+    h1 {
+      text-align: center;
+      color: #0077b6;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 12px;
+      background: #0096c7;
+      border: none;
+      border-radius: 6px;
+      font-size: 18px;
+      color: #fff;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #0077b6;
+    }
+    .result {
+      margin-top: 20px;
+      background: #e0f7fa;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      color: #006064;
+    }
+    footer {
+      text-align: center;
+      padding: 15px;
+      margin-top: 30px;
+      background: #f1f1f1;
+      font-size: 14px;
+      color: #555;
+    }
+
+    /* ✅ Mobile Responsive Fix */
+    @media (max-width: 768px) {
+      .main-wrapper {
+        flex-direction: column;
+      }
+      .ads-section {
+        min-width: 100%;
+        margin-top: 20px;
+      }
+    }
+  </style>
+
+  <!-- ✅ Google AdSense Script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7624748086951084"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+    <h2>Calcly</h2>
+  </header>
+
+  <div class="main-wrapper">
+    <!-- Calculator Section -->
+    <div class="container">
+      <h1>EMI Calculator</h1>
+      <form id="emiForm">
+        <label for="amount">Loan Amount (₹)</label>
+        <input type="number" id="amount" placeholder="Enter loan amount" required>
+
+        <label for="interest">Annual Interest Rate (%)</label>
+        <input type="number" id="interest" step="0.01" placeholder="Enter interest rate" required>
+
+        <label for="years">Loan Tenure (Years)</label>
+        <input type="number" id="years" placeholder="Enter tenure in years" required>
+
+        <button type="button" onclick="calculateEMI()">Calculate EMI</button>
+      </form>
+
+      <div class="result" id="result">Your EMI will appear here</div>
+
+      <!-- ✅ Extra Ad Below Calculator -->
+      <div style="margin-top:20px; text-align:center;">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-7624748086951084"
+             data-ad-slot="5119250962"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+    </div>
+
+    <!-- Ads Section (Sidebar) -->
+    <div class="ads-section">
+      <p><b>Advertisement</b></p>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7624748086951084"
+           data-ad-slot="5119250962"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+  </div>
+
+  <footer>
+    <div>© <span id="year"></span> Calcly — Free Scientific Calculator</div>
+    <div class="muted">
+      <a href="privacy-policy.html">Privacy Policy</a> ·
+      <a href="terms.html">Terms & Conditions</a>
+    </div>
+  </footer>
+
+  <script>
+    function calculateEMI() {
+      let amount = parseFloat(document.getElementById("amount").value);
+      let annualInterest = parseFloat(document.getElementById("interest").value);
+      let years = parseFloat(document.getElementById("years").value);
+
+      if (isNaN(amount) || isNaN(annualInterest) || isNaN(years)) {
+        document.getElementById("result").innerText = "⚠️ Please enter all values correctly!";
+        return;
+      }
+
+      let monthlyInterest = (annualInterest / 100) / 12;
+      let months = years * 12;
+
+      let emi = (amount * monthlyInterest * Math.pow(1 + monthlyInterest, months)) /
+                (Math.pow(1 + monthlyInterest, months) - 1);
+
+      document.getElementById("result").innerText =
+        "Your Monthly EMI: ₹" + emi.toFixed(2);
+    }
+
+    // Footer Year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
