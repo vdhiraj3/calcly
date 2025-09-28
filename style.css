@@ -44,17 +44,27 @@ body{margin:0;min-height:100vh;background:#fbfcff;color:#111827;padding:18px;fon
 .btn{padding:8px 10px;border-radius:8px;background:#fff;color:#375a8a;border:1px solid #eef7ff;cursor:pointer}
 .small{font-size:13px}
 
-.footer{
- display:flex;
- flex-direction: column;
- justify-content:space-between;
- align-items:center;
- margin-top:16px;
- color:#64748b;
- font-size:20px
+.footer {
+  padding: 16px;
+  text-align: center;
+  font-size: 14px;
+  color: #444;
+  border-top: 1px solid #ddd;
 }
-.muted{color:#64748b;font-size:13px}
 
+.footer .muted {
+  color: #777;
+  margin-top: 8px;
+}
+
+.footer a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
 
 /* Header Container Layout */
 .site-header {
