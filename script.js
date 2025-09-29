@@ -216,14 +216,12 @@ $(function () {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-  const weightInput = document.getElementById("weight");
-  const heightInput = document.getElementById("height");
-  const calculateBtn = document.getElementById("calculateBtn");
-  const resultDiv = document.getElementById("result");
-  const yearEl = document.getElementById("year");
+  const weightInput = document.getElementById("bmi-weight");
+  const heightInput = document.getElementById("bmi-height");
+  const calculateBtn = document.getElementById("bmi-calc-btn");
+  const resultDiv = document.getElementById("bmi-result");
 
-  // Year auto-update
-  yearEl.textContent = new Date().getFullYear();
+  if (!weightInput || !heightInput || !calculateBtn || !resultDiv) return;
 
   calculateBtn.addEventListener("click", () => {
     const weight = parseFloat(weightInput.value);
@@ -231,7 +229,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!weight || !height) {
       resultDiv.textContent = "⚠️ Please enter valid weight and height.";
-      resultDiv.className = "error";
+      resultDiv.style.color = "#ff9800";
       return;
     }
 
