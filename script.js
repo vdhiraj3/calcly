@@ -212,3 +212,52 @@ $(function () {
     document.getElementById("year").textContent = new Date().getFullYear();
   });
 });
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const weightInput = document.getElementById("weight");
+  const heightInput = document.getElementById("height");
+  const calculateBtn = document.getElementById("calculateBtn");
+  const resultDiv = document.getElementById("result");
+  const yearEl = document.getElementById("year");
+
+  // Year auto-update
+  yearEl.textContent = new Date().getFullYear();
+
+  calculateBtn.addEventListener("click", () => {
+    const weight = parseFloat(weightInput.value);
+    const height = parseFloat(heightInput.value) / 100; // cm → meters
+
+    if (!weight || !height) {
+      resultDiv.textContent = "⚠️ Please enter valid weight and height.";
+      resultDiv.className = "error";
+      return;
+    }
+
+    const bmi = (weight / (height * height)).toFixed(2);
+
+    let category = "";
+    let color = "";
+
+    if (bmi < 18.5) {
+      category = "Underweight";
+      color = "#ff9800";
+    } else if (bmi >= 18.5 && bmi < 24.9) {
+      category = "Normal weight";
+      color = "#4caf50";
+    } else if (bmi >= 25 && bmi < 29.9) {
+      category = "Overweight";
+      color = "#f44336";
+    } else {
+      category = "Obese";
+      color = "#b71c1c";
+    }
+
+    resultDiv.innerHTML = `
+      <p>Your BMI is <strong>${bmi}</strong></p>
+      <p>Category: <strong>${category}</strong></p>
+    `;
+    resultDiv.style.color = color;
+  });
+});
