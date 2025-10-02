@@ -282,3 +282,41 @@ body{margin:0;min-height:100vh;background:#fbfcff;color:#111827;padding:18px;fon
       font-weight: bold;
       color: #006064;
     }
+
+
+
+/* Blog Pages */
+.page-title {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.page-subtitle {
+  color: #666;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.blog-detail {
+  max-width: 700px;
+  margin: auto;
+  line-height: 1.6;
+}
+
+.blog-detail h1 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.blog-detail .meta {
+  color: #888;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+.blog-detail img.blog-img {
+  width: 100%;
+  border-radius: 10px;
+  margin: 20px 0;
+}
